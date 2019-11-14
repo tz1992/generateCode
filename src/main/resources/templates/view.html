@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>解析文件</title>
+	<link rel="stylesheet" type="text/css" href="easyui.css" />
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="jquery.easyui.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$('#ddlLine').combotree(
+				{
+					valueField: "id", //Value字段
+					textField: "text", //Text字段
+					multiple: true,
+					data: [{
+						"id": "全部",
+						"text": "全部",
+						"children": [{
+							"id": "北京",
+							"text": "北京"
+						}, {
+							"id": "天津",
+							"text": "天津"
+						}, {
+							"id": "上海",
+							"text": "上海"
+						}, {
+							"id": "重庆",
+							"text": "重庆"
+						}, {
+							"id": "安徽",
+							"text": "安徽"
+						},
+						 {
+							"id": "福建",
+							"text": "福建"
+						},
+						 {
+							"id": "甘肃",
+							"text": "甘肃"
+						},{
+							"id": "广东",
+							"text": "广东"
+						}, {
+							"id": "贵州",
+							"text": "贵州"
+						}, {
+							"id": "海南",
+							"text": "海南"
+						},
+						   {
+							"id": "河北",
+							"text": "河北"
+						}, {
+							"id": "河南",
+							"text": "河南"
+						},{
+							"id": "黑龙江",
+							"text": "黑龙江"
+						},
+						{
+							"id": "湖北",
+							"text": "湖北"
+						},{
+							"id": "湖南",
+							"text": "湖南"
+						},
+						{
+							"id": "吉林",
+							"text": "吉林"
+						},{
+							"id": "江苏",
+							"text": "江苏"
+						}, 
+						{
+							"id": "江西",
+							"text": "江西"
+						},{
+							"id": "辽宁",
+							"text": "辽宁"
+						}, {
+							"id": "山东",
+							"text": "山东"
+						}, {
+							"id": "山西",
+							"text": "山西"
+						}, {
+							"id": "陕西",
+							"text": "陕西"
+						}, {
+							"id": "台湾",
+							"text": "台湾"
+						},
+						 {
+							"id": "云南",
+							"text": "云南"
+						}, {
+							"id": "浙江",
+							"text": "浙江"
+						}, {
+							"id": "新疆",
+							"text": "新疆"
+						}, {
+							"id": "西藏",
+							"text": "西藏"
+						}, {
+							"id": "广西",
+							"text": "广西"
+						}, 
+						{
+							"id": "内蒙古",
+							"text": "内蒙古"
+						},
+						{
+							"id": "宁夏",
+							"text": "宁夏"
+						}]
+					}],
+					//                url: "tree_data2.json", //数据源
+					onCheck: function (node, checked) {
+						//让全选不显示
+						$("#ddlLine").combotree(
+							"setText",
+							$("#ddlLine").combobox("getText").toString()
+								.replace("全选,", ""));
+					},
+					onClick: function (node, checked) {
+						//让全选不显示
+						$("#ddlLine").combotree(
+							"setText",
+							$("#ddlLine").combobox("getText").toString()
+								.replace("全选,", ""));
+					}
+				});
+			$('#ddlLine1').combotree(
+				{
+					valueField: "id", //Value字段
+					textField: "text", //Text字段
+					multiple: true,
+					data: [{
+						"id": "全部",
+						"text": "全部",
+						"children": [{
+							"id": "15-20",
+							"text": "15-20"
+						}, {
+							"id": "21-25",
+							"text": "21-25"
+						}, {
+							"id": "26-30",
+							"text": "26-30"
+						}, {
+							"id": "31-35",
+							"text": "31-35"
+						}, {
+							"id": "36-40",
+							"text": "36-40"
+						}, {
+							"id": "41-45",
+							"text": "41-45"
+						}, {
+							"id": "46-50",
+							"text": "46-50"
+						}, {
+							"id": "51-55",
+							"text": "51-55"
+						}, {
+							"id": "56-60",
+							"text": "56-60"
+						}]
+					}],
+					//                url: "tree_data2.json", //数据源
+					onCheck: function (node, checked) {
+						//让全选不显示
+						$("#ddlLine1").combotree(
+							"setText",
+							$("#ddlLine1").combobox("getText").toString()
+								.replace("全选,", ""));
+					},
+					onClick: function (node, checked) {
+						//让全选不显示
+						$("#ddlLine1").combotree(
+							"setText",
+							$("#ddlLine1").combobox("getText").toString()
+								.replace("全选,", ""));
+					}
+				});
+				$('#ddlLine2').combotree(
+				{
+					valueField: "id", //Value字段
+					textField: "text", //Text字段
+					multiple: true,
+					data: [{
+						"id": "全部",
+						"text": "全部",
+						"children": [{
+							"id": "旧案",
+							"text": "旧案"
+						},{
+							"id": "一档",
+							"text": "一档"
+						}, {
+							"id": "二档",
+							"text": "二档"
+						},{
+							"id": "三档",
+							"text": "三档"
+						}]
+					}],
+					//                url: "tree_data2.json", //数据源
+					onCheck: function (node, checked) {
+						//让全选不显示
+						$("#ddlLine2").combotree(
+							"setText",
+							$("#ddlLine2").combobox("getText").toString()
+								.replace("全选,", ""));
+					},
+					onClick: function (node, checked) {
+						//让全选不显示
+						$("#ddlLine2").combotree(
+							"setText",
+							$("#ddlLine2").combobox("getText").toString()
+								.replace("全选,", ""));
+					}
+				});
+				$('#ddlLine3').combotree(
+				{
+					valueField: "id", //Value字段
+					textField: "text", //Text字段
+					multiple: true,
+					data: [{
+						"id": "全部",
+						"text": "全部",
+						"children": [{
+							"id": "未逾期",
+							"text": "未逾期"
+						}, {
+							"id": "逾期1-30天",
+							"text": "逾期1-30天"
+						}, {
+							"id": "逾期31-60天",
+							"text": "逾期31-60天"
+						}, {
+							"id": "逾期61-90天",
+							"text": "逾期61-90天"
+						}, {
+							"id": "逾期91-120天",
+							"text": "逾期91-120天"
+						}, {
+							"id": "逾期121-150天",
+							"text": "逾期121-150天"
+						}, {
+							"id": "逾期151-180天",
+							"text": "逾期151-180天"
+						}, {
+							"id": "逾期181-210天",
+							"text": "逾期181-210天"
+						}, {
+							"id": "逾期211-240天",
+							"text": "逾期211-240天"
+						}, {
+							"id": "逾期241-270天",
+							"text": "逾期241-270天"
+						}, {
+							"id": "逾期271-300天",
+							"text": "逾期271-300天"
+						}, {
+							"id": "逾期301-330天",
+							"text": "逾期301-330天"
+						}, {
+							"id": "逾期331-360天",
+							"text": "逾期331-360天"
+						}, {
+							"id": "逾期361-390天",
+							"text": "逾期361-390天"
+						}, {
+							"id": "逾期391-420天",
+							"text": "逾期391-420天"
+						}, {
+							"id": "逾期421-450天",
+							"text": "逾期421-450天"
+						}, {
+							"id": "逾期451-480天",
+							"text": "逾期451-480天"
+						}, {
+							"id": "逾期481-510天",
+							"text": "逾期481-510天"
+						}, {
+							"id": "逾期511-540天",
+							"text": "逾期511-540天"
+						}, {
+							"id": "逾期541-570天",
+							"text": "逾期541-570天"
+						}, {
+							"id": "逾期571-600天",
+							"text": "逾期571-600天"
+						}, {
+							"id": "逾期601-630天",
+							"text": "逾期601-630天"
+						}, {
+							"id": "逾期631-660天",
+							"text": "逾期631-660天"
+						}, {
+							"id": "逾期661-690天",
+							"text": "逾期661-690天"
+						}, {
+							"id": "逾期691-720天",
+							"text": "逾期691-720天"
+						},{
+							"id": "逾期721天以上",
+							"text": "逾期721天以上"
+						}]
+					}],
+					//                url: "tree_data2.json", //数据源
+					onCheck: function (node, checked) {
+						//让全选不显示
+						$("#ddlLine3").combotree(
+							"setText",
+							$("#ddlLine3").combobox("getText").toString()
+								.replace("全选,", ""));
+					},
+					onClick: function (node, checked) {
+						//让全选不显示
+						$("#ddlLine3").combotree(
+							"setText",
+							$("#ddlLine3").combobox("getText").toString()
+								.replace("全选,", ""));
+					}
+				});
+		    // $('#check').click(
+			// 	function(){
+			// 		var ret=/^\d+(\.{0,1}\d+){0,1}$/;
+            //         var value=$("#check").val();
+			// 		if(ret.test(value)){
+            //             alert('ok')
+			// 		}else{
+            //             alert('请输入非负数')
+			// 		}
+			// 	}
+			// );
+		})
+	</script>
+	 <style>
+    body{
+    background-image: url('images/2.jpg');
+    }
+        #a{
+            width: 500px;
+            height: 400px;
+           
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            margin: auto;
+        }
+    </style>
+
+</head>
+
+<body>
+   <div>
+     <div>
+     <a href="/logout">退出</a>
+     </div>
+	<div id='a'>
+		<div align="center">
+			<h1>文件解析</h1>
+		</div>
+		<div align="center">
+			<form method="POST" enctype="multipart/form-data" action="/">
+
+				<div align="center">
+					余额选择： 最小 <input type="text"  id="check" name="low" required="true" style="width: 80px;border-color: #95b8e7; border-width: 1px; border-style: solid" />
+					最大 <input type="text" name="high" required="true" style="width: 80px;border-color: #95b8e7; border-width: 1px; border-style: solid" />
+				</div>
+				<br />
+				<div align="center">
+					最大金额总和:  <input type="text" name="sum" required="true" style="width: 150px;border-color: #95b8e7; border-width: 1px; border-style: solid" />
+					
+				</div>
+				<br />
+				
+				<div align="center">
+					分档: <select id="ddlLine2" name="level" style="width: 205px; height: 24px; ">
+					</select>
+				</div>
+				<br />
+
+				<div align="center">
+					户籍: <select id="ddlLine" name="census" style="width: 205px; height: 24px; ">
+					</select>
+				</div>
+				<br />
+				<div align="center">
+					年龄段: <select id="ddlLine1" name="age" style="width: 205px; height: 24px; ">
+
+					</select>
+				</div>
+				<br />
+				<div align="center">
+					逾期时间: <select id="ddlLine3" name="overTime" style="width: 205px; height: 24px; ">
+
+					</select>
+				</div>
+				<br/>
+				<div align="center">
+
+					进入案池时间: <select name="days" style="width: 160px; height: 24px;  border-color: #95b8e7; border-width: 1px; border-style: solid">
+						<option value="2014/1">2014上</option>
+						<option value="2014/7">2014下</option>
+						<option value="2015/1">2015上</option>
+						<option value="2015/7">2015下</option>
+						<option value="2016/1">2016上</option>
+						<option value="2016/7">2016下</option>
+						<option value="2017/1">2017上</option>
+						<option value="2017/7">2017下</option>
+						<option value="2018/1">2018上</option>
+						<option value="2018/7" >2018下</option>
+						<option value="2019/1">2019上</option>
+						<option value="2019/7">2019下</option>
+						<option value="2020/1">2020上</option>
+						<option value="2020/7">2020下</option>
+						<option value="2021/1">2021上</option>
+						<option value="2021/7">2021下</option>
+						<option value="2022/1">2022上</option>
+						<option value="2022/7">2022下</option>
+						<option value="2023/1">2023上</option>
+						<option value="2023/7">2023下</option>
+						<option value="2024/1">2024上</option>
+						<option value="2024/7">2024下</option>
+						<option value="2025/1">2025上</option>
+						<option value="2025/7">2025下</option>
+
+					</select>
+				</div>
+				
+				<br />
+				<div align="center">
+					解析文件 <input type="file" name="file" />
+				</div>
+			
+				<div align="center">
+					<input type="submit" value="上传" name="上传" />
+				</div>
+			</form>
+			
+		</div>
+
+	</div>
+	</div>
+
+</body>
+
+</html>
