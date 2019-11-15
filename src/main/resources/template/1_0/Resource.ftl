@@ -20,7 +20,6 @@ import ${project.basepackage}.service.${model.name}Service;
  */
 @Path("/${project.abbreviation}/${model.name?lower_case}")
 @Api(tags="${project.abbreviation}/${model.name?lower_case}")
-@Resource(code = ${model.code},  desc = "${model.desc}")
 public class ${model.name}Resource extends BaseResource<${model.name}> {
 	@Autowired
 	private ${model.name}Service service;

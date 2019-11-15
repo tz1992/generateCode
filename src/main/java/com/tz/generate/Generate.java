@@ -22,6 +22,7 @@ public class Generate {
   public static String doGenerat(String jsonParam) {
     Generate generator = new Generate();
     doAction(generator, jsonParam);
+    
     return "ok";
     
   }

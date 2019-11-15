@@ -8,76 +8,104 @@
 	<script type="text/javascript" src="jquery.min.js"></script>
 	<script type="text/javascript" src="jquery.easyui.min.js"></script>
 	<script type="text/javascript">
-		$(function () {
-			
-			
-		
-		})
+		$(document).ready(function () {
+			$("#btn").click(function () {
+				$("#choiceWindow").slideDown(300);
+				$("#backGround").show();
+
+			});
+
+			$("#x").click(function () {
+				$("#choiceWindow").slideUp(300);
+				$("#backGround").hide();
+			})
+
+		});
 	</script>
-	 <style>
-    body{
-    background-image: url('images/2.jpg');
-    }
-        #a{
-            width: 500px;
-            height: 400px;
-            position: fixed;
-            top: 0px;
-            left: 0px;
-            right: 0px;
-            bottom: 0px;
-            margin: auto;
-        }
-    </style>
+	<style>
+		body {
+			background-image: url('images/2.jpg');
+		}
+
+		#right-body {
+			width: 500px;
+			height: 400px;
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			right: 0px;
+			bottom: 0px;
+			margin: auto;
+		}
+	</style>
 
 </head>
 
 <body>
-   <div>
+	<div>
 
-	<div id='a'>
-		<div align="center">
-			<h1>文件解析</h1>
+		<div id='right-body'>
+
+			<div align="center">
+				<form method="POST" enctype="multipart/form-data" action="/">
+					
+
+					<div align="center">
+						应用名称：<input type="text" id="check" name="AppName" required="true"
+							style="width: 80px;border-color: #95b8e7; border-width: 1px; border-style: solid" />
+					</div>
+					<br />
+					<div align="center">
+						基础包名: <input type="text" name="basepackage" required="true"
+							style="width: 150px;border-color: #95b8e7; border-width: 1px; border-style: solid" />
+
+					</div>
+					<br />
+
+					<button id="btn">配置数据源</button>
+					<div id="choiceWindow">
+							<label id="x" style="position: absolute;top:2px;left: 95%;font-size: 25px;">x</label>
+						<form>
+							数据库类型： <select>
+								<option value="2017-2018-1">2017-2018-1</option>
+								<option value="2017-2018-2">2017-2018-2</option>
+							</select>
+
+						</form>
+					</div>
+					<div id="backGround"></div>
+
+					<div align="center">
+						表名称: <select id="ddlLine" name="tableName" style="width: 205px; height: 24px; ">
+						</select>
+					</div>
+					<br />
+
+					<div align="center">
+						文件命名: <select id="ddlLine" name="writeName" style="width: 205px; height: 24px; ">
+						</select>
+					</div>
+					<br />
+
+
+					<br />
+					<div align="center">
+						代码保存路径 <input type="file" name="writepath" />
+					</div>
+
+					<div align="center">
+						<input type="submit" value="上传" name="上传" />
+					</div>
+				</form>
+
+			</div>
+
 		</div>
-		<div align="center">
-			<form method="POST" enctype="multipart/form-data" action="/">
 
-				<div align="center">
-				   应用名称：<input type="text"  id="check" name="AppName" required="true" style="width: 80px;border-color: #95b8e7; border-width: 1px; border-style: solid" />
-				</div>
-				<br />
-				<div align="center">
-					基础包名:  <input type="text" name="basepackage" required="true" style="width: 150px;border-color: #95b8e7; border-width: 1px; border-style: solid" />
-
-				</div>
-				<br />
-
-				<div align="center">
-					数据源: <select id="ddlLine2" name="level" style="width: 205px; height: 24px; ">
-					</select>
-				</div>
-				<br />
-
-				<div align="center">
-					表名称: <select id="ddlLine" name="census" style="width: 205px; height: 24px; ">
-					</select>
-				</div>
-				<br />
-			
-
-				<br />
-				<div align="center">
-					代码保存路径 <input type="file" name="file" />
-				</div>
-			
-				<div align="center">
-					<input type="submit" value="上传" name="上传" />
-				</div>
-			</form>
-			
+		<div id='header'>
+			<button />
 		</div>
 
-	</div>
 	</div>
 
 </body>
