@@ -13,6 +13,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 @Configuration
 @ComponentScan(basePackages={"com.tz"} ,useDefaultFilters = false, nameGenerator = ActionBeanNameGenerator.class, includeFilters = {@Filter({com.tz.generate.annotation.Action.class})})
 public class GeneratorConfig {
+ 
   Map<String, Object> global = new HashMap<>();
 
 

@@ -12,7 +12,6 @@ import java.lang.annotation.Target;
 public @interface Action {
   String action();
   
-  String tag() default "ms";
   
   String version();
 }

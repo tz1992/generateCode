@@ -18,7 +18,6 @@ public class ActionBeanNameGenerator implements BeanNameGenerator {
     AnnotatedBeanDefinition annotatedDef = (AnnotatedBeanDefinition)definition;
     AnnotationMetadata amd = annotatedDef.getMetadata();
     Map<String, Object> map = amd.getAnnotationAttributes(com.tz.generate.annotation.Action.class.getName());
-    Assert.notNull(map.get("tag"), "tag of Action annotation must be not null in " + annotatedDef.getBeanClassName() + " class.");
     Assert.notNull(map.get("version"), "version of Action annotation must be not null in " + annotatedDef.getBeanClassName() + " class.");
     Assert.notNull(map.get("action"), "action of Action annotation must be not null in " + annotatedDef.getBeanClassName() + " class.");
     return BeanNameUtil.getBeanName(map);
