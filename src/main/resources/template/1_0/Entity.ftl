@@ -1,6 +1,4 @@
-/*
-* ${project.head}
-*/
+
 package ${project.basepackage}.entity;
 
 <#if imports??>

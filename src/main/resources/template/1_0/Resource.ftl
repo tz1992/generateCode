@@ -1,6 +1,4 @@
-/*
-* ${project.head}
-*/
+
 package ${project.basepackage}.ui;
 
 import javax.ws.rs.GET;

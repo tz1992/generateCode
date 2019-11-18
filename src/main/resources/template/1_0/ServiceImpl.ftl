@@ -1,6 +1,4 @@
-/*
-* ${project.head}
-*/
+
 package ${project.basepackage}.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;

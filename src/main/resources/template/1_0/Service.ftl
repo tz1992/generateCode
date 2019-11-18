@@ -1,6 +1,4 @@
-/*
-* ${project.head}
-*/
+
 package ${project.basepackage}.service;
 
 import org.springframework.transaction.annotation.Transactional;

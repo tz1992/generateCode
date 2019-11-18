@@ -55,7 +55,7 @@ public class ProjectAction extends ConfigAction {
 
     goProperties(json);
 
-    goTest(json);
+//    goTest(json);
 
     if (!goModel(json)) {
       return;

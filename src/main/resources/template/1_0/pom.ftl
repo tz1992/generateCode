@@ -13,7 +13,7 @@
 	<packaging>jar</packaging>
 
 	<name>${project.name}</name>
-	<description>${project.title}</description>
+	
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

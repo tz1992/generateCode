@@ -1,6 +1,4 @@
-/*
-* ${project.head}
-*/
+
 package ${project.basepackage}.dao;
 
 import org.apache.ibatis.annotations.Mapper;

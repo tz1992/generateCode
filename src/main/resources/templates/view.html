@@ -48,7 +48,7 @@
 
 			<div align="center">
 				<form method="POST" enctype="multipart/form-data" action="/">
-					
+
 
 					<div align="center">
 						应用名称：<input type="text" id="check" name="AppName" required="true"
@@ -62,18 +62,6 @@
 					</div>
 					<br />
 
-					<button id="btn">配置数据源</button>
-					<div id="choiceWindow">
-							<label id="x" style="position: absolute;top:2px;left: 95%;font-size: 25px;">x</label>
-						<form>
-							数据库类型： <select>
-								<option value="2017-2018-1">2017-2018-1</option>
-								<option value="2017-2018-2">2017-2018-2</option>
-							</select>
-
-						</form>
-					</div>
-					<div id="backGround"></div>
 
 					<div align="center">
 						表名称: <select id="ddlLine" name="tableName" style="width: 205px; height: 24px; ">
@@ -90,8 +78,10 @@
 
 					<br />
 					<div align="center">
-						代码保存路径 <input type="file" name="writepath" />
+						代码保存路径 ：<input type="file" name="writepath" />
 					</div>
+					
+
 
 					<div align="center">
 						<input type="submit" value="上传" name="上传" />
@@ -103,7 +93,21 @@
 		</div>
 
 		<div id='header'>
-			<button />
+			<button id="btn">连接数据库</button>
+			<div id="choiceWindow">
+				<label id="x" style="position: absolute;top:2px;left: 95%;font-size: 25px;">x</label>
+				<form>
+					<div align="center">
+						数据库类型：<select>
+							<option value="oracle">oracle数据库</option>
+							<option value="mysql">mysql数据库</option>
+							<option value="sqlserver">sqlserver数据库</option>
+						</select>
+					</div>
+
+				</form>
+			</div>
+
 		</div>
 
 	</div>

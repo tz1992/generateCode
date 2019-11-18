@@ -35,7 +35,7 @@ public class Generate {
     
     String version = jsonobject.getString("version");
     if (StringUtils.isEmpty(version)) {
-      version = "1_0";
+      version = "1.0";
     }
 
     String action = jsonobject.getString("action");
