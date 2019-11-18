@@ -36,39 +36,73 @@ public class ApiController {
     List<HashMap<String, String>> models = new ArrayList<HashMap<String, String>>();
     models.add(tables);
     jsonObject.put("model", models);
-    
+
+
     try {
       Generate.doGenerat(jsonObject.toString());
-      return "代码在"+json.get("writepath")+"成功生成";
+      return "代码在" + json.get("writepath") + "成功生成";
     } catch (Exception e) {
       e.printStackTrace();
       return "代码生成失败";
     }
-    
-   
+
+
   }
 
 
   @PostMapping("/testSqlConnect")
-  public String testSqlConnect(@RequestBody  Map<String, String> json) {
+  public Map<String, String> testSqlConnect(@RequestBody Map<String, String> json) {
     Connection connection = null;
+    Map<String, String> map = new HashMap<>();
+
     try {
-      Class.forName(json.get("driverClassName"));
-      String url=json.get("url");
-      String username=json.get("username");
-      String password=json.get("password");
-      connection=DriverManager.getConnection(url, username, password);
-      return "连接成功";
-      
-      
+
+      String driverClassName = json.get("driverClassName");
+      String ip = json.get("host");
+      String port = json.get("port");
+      String dbName = json.get("dbName");
+      StringBuilder url = new StringBuilder();
+      switch (driverClassName) {
+        case "oracle.jdbc.driver.OracleDriver":
+          url.append("jdbc:oracle:thin:@").append(ip).append(":").append(port).append("/")
+              .append(dbName);
+          break;
+        case "com.mysql.jdbc.Driver":
+          url.append("jdbc:mysql://").append(ip).append(":").append(port).append("/")
+              .append(dbName);
+
+          break;
+        case "com.microsoft.sqlserver.jdbc.SQLServerDriver":
+          url.append("jdbc:sqlserver://").append(ip).append(":").append(port)
+              .append(";DatabaseName=").append(dbName);
+
+          break;
+
+        default:
+          break;
+      }
+
+      String databaseUrl=url.toString();
+      Class.forName(driverClassName);
+      String username = json.get("username");
+      String password = json.get("password");
+      System.out.println(username);
+      System.out.println(password);
+
+      connection = DriverManager.getConnection(databaseUrl, username, password);
+      map.put("code", "200");
+      map.put("result", "连接成功");
+
     } catch (SQLException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
-      return "连接失败";
+      map.put("code", "500");
+      map.put("result", "连接失败");
     } catch (ClassNotFoundException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
-      return "连接失败";
+      map.put("code", "500");
+      map.put("result", "连接失败");
     } finally {
       try {
         if (connection != null) {
@@ -81,5 +115,7 @@ public class ApiController {
       }
     }
 
+
+    return map;
   }
 }
