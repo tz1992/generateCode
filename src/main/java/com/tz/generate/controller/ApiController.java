@@ -118,4 +118,74 @@ public class ApiController {
 
     return map;
   }
+  
+  
+  @PostMapping("/makesure")
+  public Map<String, String> makesure(@RequestBody Map<String, String> json) {
+    Connection connection = null;
+    Map<String, String> map = new HashMap<>();
+
+    try {
+
+      String driverClassName = json.get("driverClassName");
+      String ip = json.get("host");
+      String port = json.get("port");
+      String dbName = json.get("dbName");
+      StringBuilder url = new StringBuilder();
+      switch (driverClassName) {
+        case "oracle.jdbc.driver.OracleDriver":
+          url.append("jdbc:oracle:thin:@").append(ip).append(":").append(port).append("/")
+              .append(dbName);
+          break;
+        case "com.mysql.jdbc.Driver":
+          url.append("jdbc:mysql://").append(ip).append(":").append(port).append("/")
+              .append(dbName);
+
+          break;
+        case "com.microsoft.sqlserver.jdbc.SQLServerDriver":
+          url.append("jdbc:sqlserver://").append(ip).append(":").append(port)
+              .append(";DatabaseName=").append(dbName);
+
+          break;
+
+        default:
+          break;
+      }
+
+      String databaseUrl=url.toString();
+      Class.forName(driverClassName);
+      String username = json.get("username");
+      String password = json.get("password");
+      System.out.println(username);
+      System.out.println(password);
+
+      connection = DriverManager.getConnection(databaseUrl, username, password);
+      map.put("code", "200");
+      map.put("result", "连接成功");
+
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+      map.put("code", "500");
+      map.put("result", "连接失败");
+    } catch (ClassNotFoundException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+      map.put("code", "500");
+      map.put("result", "连接失败");
+    } finally {
+      try {
+        if (connection != null) {
+          connection.close();
+        }
+
+      } catch (SQLException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    }
+
+
+    return map;
+  }
 }
