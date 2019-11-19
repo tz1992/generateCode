@@ -16,7 +16,7 @@ import com.tz.generate.entity.SqlEntity;
 
 
 public class SqliteConnection {
-  private static final String DB_URL = "jdbc:sqlite:/sqlite3.db";
+  private static final String DB_URL = "jdbc:sqlite:./db/sqlite3.db";
   private static final Logger _LOG = LoggerFactory.getLogger(SqliteConnection.class);
 
   private static Connection getConnection() throws Exception {
@@ -33,16 +33,19 @@ public class SqliteConnection {
     ResultSet rs = null;
     try {
       connection = getConnection();
+
       stat = connection.createStatement();
 
-      rs = stat.executeQuery("select * from dbs where url='" + sqlEntity.getUrl() + "'");
+      rs = stat
+          .executeQuery("select * from dbs where called_name='" + sqlEntity.getCalledName() + "'");
+
       if (rs.next()) {
         return new ResponseData(500, "当前的数据库已存在", null);
       }
       String sql = String.format(
-          "INSERT INTO dbs (url, password,username,driver_class_name) values('%s', '%s','%s', '%s')",
+          "INSERT INTO dbs (url, password,username,driver_class_name,called_name) values('%s', '%s','%s', '%s', '%s')",
           sqlEntity.getUrl(), sqlEntity.getPassword(), sqlEntity.getUsername(),
-          sqlEntity.getDriverClassName());
+          sqlEntity.getDriverClassName(), sqlEntity.getCalledName());
       stat.executeUpdate(sql);
       return new ResponseData(200, "数据存储成功", null);
 
@@ -50,7 +53,7 @@ public class SqliteConnection {
       // TODO Auto-generated catch block
       e.printStackTrace();
       return new ResponseData(500, "数据存储失败", null);
-    }finally {
+    } finally {
       try {
         connection.close();
       } catch (SQLException e) {
@@ -62,7 +65,7 @@ public class SqliteConnection {
 
 
   }
-  
+
   public static ResponseData getSqlBeans() {
     Connection connection = null;
     Statement stat = null;
@@ -72,12 +75,12 @@ public class SqliteConnection {
       stat = connection.createStatement();
 
       rs = stat.executeQuery("select * from dbs");
-      String value=null;
-     if(rs.next()){
-        value= rs.getString("value");
-       System.out.println(value);
-     }
-      
+      String value = null;
+      if (rs.next()) {
+        value = rs.getString("value");
+        System.out.println(value);
+      }
+
       return new ResponseData(200, "查询数据库数据成功", value);
 
     } catch (Exception e) {

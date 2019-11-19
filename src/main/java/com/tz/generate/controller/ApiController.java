@@ -163,9 +163,10 @@ public class ApiController {
       System.out.println(password);
 
       connection = DriverManager.getConnection(databaseUrl, username, password);
-      SqlEntity sqlEntity=new SqlEntity(databaseUrl,username,password,driverClassName);
+      SqlEntity sqlEntity=new SqlEntity(databaseUrl,username,password,driverClassName,json.get("calledName"));
       res=SqliteConnection.insertSqlBean(sqlEntity);
-      if(res.getCode()==200){
+      
+      if(res.getCode()!=200){
         map.put("code", "500");
         map.put("result", "连接失败");
       }else{
@@ -177,16 +178,12 @@ public class ApiController {
       
 
 
-    } catch (SQLException e) {
+    } catch (Exception e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
       map.put("code", "500");
       map.put("result", "连接失败");
-    } catch (ClassNotFoundException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-      map.put("code", "500");
-      map.put("result", "连接失败");
+    
     } finally {
       try {
         if (connection != null) {

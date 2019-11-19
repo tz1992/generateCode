@@ -37,11 +37,11 @@
 				contentType: "application/json;charset=UTF-8",
 				dataType: "json",
 				success: function (res) {
-                      if(res.code=="200"){
+					if (res.code == "200") {
 						alert("连接数据库成功");
-					  }else{
+					} else {
 						alert("连接数据库失败");
-					  }
+					}
 				},
 
 			}
@@ -55,7 +55,30 @@
 		};
 
 		function makesure() {
+			var formSerial = {};
+			$($("#sqlForm").serializeArray()).each(function () {
+				formSerial[this.name] = this.value;
+			});
 
+			var fromValue = JSON.stringify(formSerial);
+			$.ajax({
+				url: "/makesure",
+				type: "post",
+				data: fromValue,
+				contentType: "application/json;charset=UTF-8",
+				dataType: "json",
+				success: function (res) {
+					if (res.code == "200") {
+						alert("连接数据库成功");
+					} else {
+						alert("连接数据库失败");
+					}
+				},
+
+			}
+
+
+			)
 		};
 	</script>
 	<style>
