@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
 import com.tz.generate.Generate;
+import com.tz.generate.entity.ResponseData;
+import com.tz.generate.entity.SqlEntity;
+import com.tz.generate.util.SqliteConnection;
 
 @RestController
 public class ApiController {
@@ -121,10 +124,10 @@ public class ApiController {
   
   
   @PostMapping("/makesure")
-  public Map<String, String> makesure(@RequestBody Map<String, String> json) {
+  public Map<String, String> makesure(@RequestBody Map<String, String> json) throws Exception {
     Connection connection = null;
     Map<String, String> map = new HashMap<>();
-
+    ResponseData res=null;
     try {
 
       String driverClassName = json.get("driverClassName");
@@ -160,8 +163,19 @@ public class ApiController {
       System.out.println(password);
 
       connection = DriverManager.getConnection(databaseUrl, username, password);
-      map.put("code", "200");
-      map.put("result", "连接成功");
+      SqlEntity sqlEntity=new SqlEntity(databaseUrl,username,password,driverClassName);
+      res=SqliteConnection.insertSqlBean(sqlEntity);
+      if(res.getCode()==200){
+        map.put("code", "500");
+        map.put("result", "连接失败");
+      }else{
+        map.put("code", "200");
+        map.put("result", "连接成功");
+      }
+     
+     
+      
+
 
     } catch (SQLException e) {
       // TODO Auto-generated catch block

@@ -22,6 +22,20 @@ public class SqlEntity implements Serializable{
     this.url = url;
   }
 
+  public SqlEntity() {
+    super();
+  }
+  
+  
+
+  public SqlEntity(String url, String username, String password, String driverClassName) {
+    super();
+    this.url = url;
+    this.username = username;
+    this.password = password;
+    this.driverClassName = driverClassName;
+  }
+
   public String getUsername() {
     return username;
   }
