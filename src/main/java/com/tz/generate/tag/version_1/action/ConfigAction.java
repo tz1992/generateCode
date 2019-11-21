@@ -31,14 +31,6 @@ public class ConfigAction extends BaseAction<Project> {
     if (StringUtils.isEmpty(project.getUserName())) {
       project.setUserName(currentUser);
     }
-    if (StringUtils.isEmpty(project.getAbbreviation())) {
-      String[] splitName = project.getName().split("-");
-      try {
-        project.setAbbreviation(splitName[splitName.length - 1]);
-      } catch (IndexOutOfBoundsException iobe) {
-        throw new RuntimeException("name must be 3 paragraph like {}-{}-{} ");
-      }
-    }
     project.setTimeStamp(df.format(new Date()));
 
     global().put("project", project);
@@ -46,13 +38,6 @@ public class ConfigAction extends BaseAction<Project> {
 
     checkPath(project.getWritepath(), project.isClear());
 
-    Db db = project.getDb();
-
-    this.dataSource.setDriverClassName(db.getDriverClassName());
-    this.dataSource.setUrl(db.getUrl());
-    this.dataSource.setUsername(db.getUsername());
-    this.dataSource.setPassword(db.getPassword());
-    global().put("db", db);
   }
 
 

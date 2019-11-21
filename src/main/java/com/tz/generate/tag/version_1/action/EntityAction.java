@@ -45,17 +45,7 @@ public class EntityAction
   }
 
   
-  private boolean ignoreColumn(Entity entity, String columnName) {
-    List<String> list = entity.getIgnoreColumn();
-    if (list == null) return false;
-    
-    for (String col : list) {
-      if (col.equalsIgnoreCase(columnName)) {
-        return true;
-      }
-    } 
-    return false;
-  }
+
 
   
   protected void eachModel(Project project, Entity entity, Model model) {
@@ -71,8 +61,6 @@ public class EntityAction
       
       String ColumnClassName = column.getColumnClassName();
       if (StringUtils.isEmpty(ColumnClassName))
-        continue; 
-      if (ignoreColumn(entity, column.getColumnName()) == true)
         continue; 
       if (ColumnClassName.equals("java.sql.Timestamp")) {
         ColumnClassName = "java.util.Date";

@@ -14,6 +14,15 @@ public class SqlEntity implements Serializable {
   private String password;
   private String driverClassName;
   private String calledName;
+  private String dbName;
+
+  public String getDbName() {
+    return dbName;
+  }
+
+  public void setDbName(String dbName) {
+    this.dbName = dbName;
+  }
 
   public String getCalledName() {
     return calledName;
@@ -37,13 +46,14 @@ public class SqlEntity implements Serializable {
 
 
 
-  public SqlEntity(String url, String username, String password, String driverClassName,String calledName) {
+  public SqlEntity(String url, String username, String password, String driverClassName,String calledName,String dbName) {
     super();
     this.url = url;
     this.username = username;
     this.password = password;
     this.driverClassName = driverClassName;
     this.calledName=calledName;
+    this.dbName=dbName;
   }
 
   public String getUsername() {
