@@ -53,11 +53,11 @@
 	<sql id="base_insert_sql">
 		INSERT INTO ${model.table} (
 		    <#list model.column as column><#lt />
-            ${(column_index%3==0)?string("\t\t\t","")}${column.columnName}${(column_index%3==2)?string("\n","")}<#t>
+            ${"\t\t\t"}${column.columnName}${",\n"}<#t>
 		    </#list><#lt />
 		  ) VALUES (
 			<#list model.column as column><#lt>
-			 ${(column_index%3==0)?string("\t\t\t","")}${r"#{"}${column.propertyName},jdbcType=${column.columnTypeName}${r"}"}${(column_index%3==2)?string("\n","")}<#t>
+			 ${"\t\t\t"}${r"#{"}${column.propertyName},jdbcType=${column.columnTypeName}${r"}"}${",\n"}<#t>
 			</#list>
 		  )
 	</sql>
