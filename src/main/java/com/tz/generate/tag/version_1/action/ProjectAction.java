@@ -26,8 +26,8 @@ public class ProjectAction extends ConfigAction {
 
     String writepath = project.getWritepath();
     String javaPath =
-        writepath + "/src/main/java/" + project.getBasepackage().replaceAll("\\.", "/");
-    String resourcesPath = writepath + "/src/main/resources/"
+        writepath +"/"+project.getAppName()+ "/src/main/java/" + project.getBasepackage().replaceAll("\\.", "/");
+    String resourcesPath = writepath +"/"+project.getAppName()+ "/src/main/resources/"
         + project.getBasepackage().replaceAll("\\.", "/") + "/dao";
 
 //    String testJavaPath = writepath + "/src/test/java/";
@@ -112,13 +112,5 @@ public class ProjectAction extends ConfigAction {
 
   }
 
-  protected void goTest(JSONObject json) {
-    if (json.getBooleanValue("notest")) {
-      return;
-    }
-    JSONObject test = (JSONObject) json.get("test");
-
-    BaseAction action = getBean("test");
-    if (action != null) action.write(test);
-  }
+ 
 }

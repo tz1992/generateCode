@@ -33,7 +33,7 @@ public class DockerAction extends BaseAction<Docker> {
     param.putAll(global());
     param.put("docker", docker);
 
-    String filePath = project.getWritepath() + "/Dockerfile";
+    String filePath = project.getWritepath() +"/"+project.getAppName()+ "/Dockerfile";
 
     TemplateUtil.fprint(template, filePath, param);
   }

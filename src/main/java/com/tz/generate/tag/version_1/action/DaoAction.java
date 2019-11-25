@@ -36,14 +36,14 @@ public class DaoAction extends BaseAction<Dao> {
   protected void doDao(Project project, Dao dao, Model model) {
     Template template = getTemplate((dao == null) ? null : dao.getTemplate(), "Dao");
 
-    String javaPath = project.getWritepath() + "/src/main/java/"
+    String javaPath = project.getWritepath() +"/"+project.getAppName()+ "/src/main/java/"
         + project.getBasepackage().replaceAll("\\.", "/");
     String filePath = javaPath + "/dao/" + model.getName() + "Dao.java";
 
     Map<String, Object> param = new HashMap<String, Object>();
     param.putAll(global());
     param.put("model", model);
-    param.put("dao", dao);
+//    param.put("dao", dao);
 
     TemplateUtil.fprint(template, filePath, param);
   }
@@ -51,7 +51,7 @@ public class DaoAction extends BaseAction<Dao> {
   protected void doDaoXml(Project project, Dao dao, Model model) {
     Template template = getTemplate((dao == null) ? null : dao.getXmlTemplate(), "DaoXml");
 
-    String resourcesPath = project.getWritepath() + "/src/main/resources/"
+    String resourcesPath = project.getWritepath()+"/"+project.getAppName() + "/src/main/resources/"
         + project.getBasepackage().replaceAll("\\.", "/") + "/dao";
     String filePath = resourcesPath + "/" + model.getName() + "Dao.xml";
 
@@ -62,7 +62,7 @@ public class DaoAction extends BaseAction<Dao> {
     Map<String, Object> param = new HashMap<String, Object>();
     param.putAll(global());
     param.put("model", model);
-    param.put("dao", dao);
+//    param.put("dao", dao);
 
     TemplateUtil.fprint(template, filePath, param);
   }

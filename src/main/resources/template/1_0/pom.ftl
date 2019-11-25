@@ -9,10 +9,10 @@
 		<relativePath />
 	</parent>
 
-	<artifactId>${project.name}</artifactId>
+	<artifactId>${project.appName}</artifactId>
 	<packaging>jar</packaging>
 
-	<name>${project.name}</name>
+	<name>${project.appName}</name>
 	
 
 	<properties>

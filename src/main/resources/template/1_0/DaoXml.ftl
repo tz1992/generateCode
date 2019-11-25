@@ -3,7 +3,6 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="${project.basepackage}.dao.${model.name}Dao">
-<#assign columnsize=model.column?size>
 	<!-- <cache /> -->
 
 	<!-- ///////////////////////////基础接口定义///////////////////////////////// -->
@@ -54,21 +53,21 @@
 	<sql id="base_insert_sql">
 		INSERT INTO ${model.table} (
 		    <#list model.column as column><#lt />
-            ${(column_index%3==0)?string("\t\t\t","")}${column.columnName}${(column_index<columnsize-1)?string(",","")}${(column_index%3==2)?string("\n","")}<#t>
+            ${(column_index%3==0)?string("\t\t\t","")}${column.columnName}${(column_index%3==2)?string("\n","")}<#t>
 		    </#list><#lt />
 		  ) VALUES (
 			<#list model.column as column><#lt>
-			 ${(column_index%3==0)?string("\t\t\t","")}${r"#{"}${column.propertyName},jdbcType=${column.columnTypeName}${r"}"}${(column_index<columnsize-1)?string(",","")}${(column_index%3==2)?string("\n","")}<#t>
+			 ${(column_index%3==0)?string("\t\t\t","")}${r"#{"}${column.propertyName},jdbcType=${column.columnTypeName}${r"}"}${(column_index%3==2)?string("\n","")}<#t>
 			</#list>
 		  )
 	</sql>
 
 	<insert id="insert" parameterType="${project.basepackage}.entity.${model.name}" useGeneratedKeys="true" keyColumn="ID" keyProperty="id">
-	<#if db.url?index_of("oracle")!=-1>
+	<#if project.driverClassName?index_of("oracle")!=-1>
 		<selectKey resultType="long" keyProperty="id" order="BEFORE" databaseId="oracle">
         	SELECT ${model.table?keep_before_last("_")}_S.nextval AS value FROM dual  
 		</selectKey>
-	<#elseif db.url?index_of("mysql")!=-1>
+	<#elseif project.driverClassName?index_of("mysql")!=-1>
 		<selectKey keyProperty="id" resultType="long">  
             select LAST_INSERT_ID()  
         </selectKey> 
@@ -83,7 +82,7 @@
 		<set>  
 	  	  <#list model.column as column><#lt>
 	  	  <if test="${column.propertyName} != null">
-			${column.columnName} = ${r"#{"}${column.propertyName},jdbcType=${column.columnTypeName}${r"}"}${(column_index<columnsize-1)?string(",","")}
+			${column.columnName} = ${r"#{"}${column.propertyName},jdbcType=${column.columnTypeName}${r"}"},
 		  ${(column_index%1==0)?string("\t\t  ","")}</if>${(column_index%1==0)?string("\n","")}<#t>
 		  </#list>
 		  REVISION = ${r"#{"}revisionNext,jdbcType=INTEGER${r"}"},

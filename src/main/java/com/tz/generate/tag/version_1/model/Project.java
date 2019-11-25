@@ -5,7 +5,7 @@ import com.tz.generate.tag.Db;
 
 public class Project extends BaseTag {
   private String head;
-  private String name;
+  private String appName;
   private String title;
   private Db db;
   private String writepath;
@@ -15,7 +15,7 @@ public class Project extends BaseTag {
   private String abbreviation;
   private boolean clear = true;
   private String model = "ms";
-
+  private String driverClassName ;
 
   private String version;
 
@@ -92,14 +92,14 @@ public class Project extends BaseTag {
 
 
 
-  public String getName() {
-    return this.name;
+  public String getAppName() {
+    return this.appName;
   }
 
 
 
-  public void setName(String name) {
-    this.name = name;
+  public void setAppName(String appName) {
+    this.appName = appName;
   }
 
 
@@ -161,5 +161,20 @@ public class Project extends BaseTag {
   public void setModel(String model) {
     this.model = model;
   }
+
+
+
+  public String getDriverClassName() {
+    return driverClassName;
+  }
+
+
+
+  public void setDriverClassName(String driverClassName) {
+    this.driverClassName = driverClassName;
+  }
+  
+  
+  
 }
 

@@ -34,9 +34,14 @@ public class ConfigAction extends BaseAction<Project> {
     project.setTimeStamp(df.format(new Date()));
 
     global().put("project", project);
+    
+    this.dataSource.setDriverClassName((String) jsonobject.get("driverClassName"));
+    this.dataSource.setUrl((String) jsonobject.get("url"));
+    this.dataSource.setUsername((String) jsonobject.get("username"));
+    this.dataSource.setPassword((String) jsonobject.get("password"));
 
 
-    checkPath(project.getWritepath(), project.isClear());
+    checkPath(project.getWritepath()+"/"+project.getAppName(), project.isClear());
 
   }
 

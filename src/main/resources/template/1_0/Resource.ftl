@@ -16,8 +16,8 @@ import ${project.basepackage}.service.${model.name}Service;
  * @author ${project.userName}
  * @timestamp ${project.timeStamp}
  */
-@Path("/${project.abbreviation}/${model.name?lower_case}")
-@Api(tags="${project.abbreviation}/${model.name?lower_case}")
+@Path("/${project.appName}/${model.name?lower_case}")
+@Api(tags="${project.appName}/${model.name?lower_case}")
 public class ${model.name}Resource extends BaseResource<${model.name}> {
 	@Autowired
 	private ${model.name}Service service;

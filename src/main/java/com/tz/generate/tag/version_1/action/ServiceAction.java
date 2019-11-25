@@ -36,7 +36,7 @@ public class ServiceAction extends BaseAction<Service> {
   protected void doService(Project project, Service service, Model model) {
     Template template = getTemplate((service == null) ? null : service.getTemplate(), "Service");
 
-    String javaPath = project.getWritepath() + "/src/main/java/"
+    String javaPath = project.getWritepath()+"/"+project.getAppName() + "/src/main/java/"
         + project.getBasepackage().replaceAll("\\.", "/");
     String filePath = javaPath + "/service/" + model.getName() + "Service.java";
 
@@ -53,7 +53,7 @@ public class ServiceAction extends BaseAction<Service> {
     Template template =
         getTemplate((service == null) ? null : service.getImplTemplate(), "ServiceImpl");
 
-    String javaPath = project.getWritepath() + "/src/main/java/"
+    String javaPath = project.getWritepath()+"/"+project.getAppName() + "/src/main/java/"
         + project.getBasepackage().replaceAll("\\.", "/");
     String filePath = javaPath + "/service/impl/" + model.getName() + "ServiceImpl.java";
 

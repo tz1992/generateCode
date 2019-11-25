@@ -34,7 +34,7 @@ public class GitignoreAction extends BaseAction<Gitignore> {
     param.putAll(global());
     param.put("gitignore", gitignore);
 
-    String filePath = project.getWritepath() + "/.gitignore";
+    String filePath = project.getWritepath()+"/"+project.getAppName() + "/.gitignore";
 
     TemplateUtil.fprint(template, filePath, param);
   }

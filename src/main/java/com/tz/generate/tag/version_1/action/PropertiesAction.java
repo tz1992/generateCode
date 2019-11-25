@@ -28,13 +28,13 @@ public class PropertiesAction extends BaseAction<Project> {
     Map<String, Object> param = new HashMap<String, Object>();
     param.putAll(global());
 
-    String filePath = project.getWritepath() + "/src/main/resources/application.properties";
+    String filePath = project.getWritepath() +"/"+project.getAppName()+ "/src/main/resources/application.properties";
     TemplateUtil.fprint(applicationProperties, filePath, param);
 
-    filePath = project.getWritepath() + "/src/main/resources/bootstrap.properties";
+    filePath = project.getWritepath()+"/"+project.getAppName() + "/src/main/resources/bootstrap.properties";
     TemplateUtil.fprint(bootstrapProperties, filePath, param);
 
-    String javaPath = project.getWritepath() + "/src/main/java/"
+    String javaPath = project.getWritepath() +"/"+project.getAppName()+ "/src/main/java/"
         + project.getBasepackage().replaceAll("\\.", "/");
     filePath = javaPath + "/TestApplication.java";
     TemplateUtil.fprint(application, filePath, param);

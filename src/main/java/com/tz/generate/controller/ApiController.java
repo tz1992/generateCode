@@ -50,12 +50,8 @@ public class ApiController {
     jsonObject.put("name", json.get("name"));
     jsonObject.put("entity", json.get("entity"));
     jsonObject.put("dao", json.get("dao"));
-    String tableName = (String) json.get("tableName");
-    String writeName = (String) json.get("writeName");
-    HashMap<String, String> tables = new HashMap<>();
-    tables.put("table", tableName);
-    tables.put("name", writeName);
-    List<HashMap<String, String>> models = new ArrayList<HashMap<String, String>>();
+    
+   
     //获取对应的数据库信息
     int db=(int) json.get("db");
     ResponseData responseData = this.getConnectInfos();
@@ -67,20 +63,29 @@ public class ApiController {
         break;
       }
     }
+  
     
-    dataSource.setUrl((String) dbinfo.get("url"));
-    dataSource.setDriverClassName((String) dbinfo.get("driver_class_name"));
-    dataSource.setUsername((String) dbinfo.get("username"));
-    dataSource.setPassword((String) dbinfo.get("password"));
+    // 设置DataSource
+    jsonObject.put("driverClassName", (String) dbinfo.get("driver_class_name"));
+    jsonObject.put("url", (String) dbinfo.get("url"));
+    jsonObject.put("username", (String) dbinfo.get("username"));
+    jsonObject.put("password", (String) dbinfo.get("password"));
     
     
+    // 设置models
+    List<HashMap<String, String>> models = new ArrayList<HashMap<String, String>>();
+    String tableName = (String) json.get("tableName");
+    String writeName = (String) json.get("writeName");
+    HashMap<String, String> tables = new HashMap<>();
+    tables.put("table", tableName);
+    tables.put("name", writeName);
     models.add(tables);
     jsonObject.put("model", models);
 
 
     try {
       Generate.doGenerat(jsonObject.toString());
-      return "代码在" + json.get("writepath") + "成功生成";
+      return "代码在" + json.get("writePath") + "成功生成";
     } catch (Exception e) {
       e.printStackTrace();
       return "代码生成失败";

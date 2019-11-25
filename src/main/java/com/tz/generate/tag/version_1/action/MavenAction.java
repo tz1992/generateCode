@@ -33,7 +33,7 @@ public class MavenAction extends BaseAction<Maven> {
     param.putAll(global());
     param.put("maven", maven);
 
-    String filePath = project.getWritepath() + "/pom.xml";
+    String filePath = project.getWritepath() +"/"+project.getAppName()+ "/pom.xml";
 
     TemplateUtil.fprint(template, filePath, param);
   }

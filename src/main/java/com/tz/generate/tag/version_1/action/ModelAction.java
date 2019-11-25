@@ -20,6 +20,7 @@ import com.tz.generate.tag.BaseAction;
 import com.tz.generate.tag.Column;
 import com.tz.generate.tag.Db;
 import com.tz.generate.tag.Model;
+import com.tz.generate.tag.version_1.model.Project;
 import com.tz.generate.util.Utils;
 
 @Action(action = "model", version = "1.0")
@@ -137,9 +138,13 @@ public class ModelAction extends BaseAction<Model> {
     if (StringUtils.isEmpty(model.getDesc())) {
       model.setDesc(model.getName() + " Resource");
     }
+    
 
-    Db db = (Db) global().get("db");
-    String driver = db.getDriverClassName();
+   Project project= (Project)global().get("project");
+   
+   String driver=project.getDriverClassName();
+   
+   
     if (driver == null) {
       return;
     }
