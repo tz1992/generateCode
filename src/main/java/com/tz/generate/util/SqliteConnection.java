@@ -78,7 +78,6 @@ public class SqliteConnection {
     try {
       connection = getConnection();
       stat = connection.createStatement();
-
       rs = stat.executeQuery("select * from dbs");
       ResultSetMetaData md = rs.getMetaData(); // 获得结果集结构信息,元数据
       int columnCount = md.getColumnCount(); // 获得列数
@@ -89,11 +88,9 @@ public class SqliteConnection {
           rowData.put(md.getColumnName(i), rs.getObject(i));
         }
         list.add(rowData);
-
       }
-
+      
       return new ResponseData(200, "查询数据库数据成功", list);
-
     } catch (Exception e) {
       // TODO Auto-generated catch block
       e.printStackTrace();

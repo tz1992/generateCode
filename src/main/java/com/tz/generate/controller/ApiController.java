@@ -51,7 +51,7 @@ public class ApiController {
     jsonObject.put("entity", json.get("entity"));
     jsonObject.put("dao", json.get("dao"));
     
-   
+    
     //获取对应的数据库信息
     int db=(int) json.get("db");
     ResponseData responseData = this.getConnectInfos();
@@ -63,7 +63,7 @@ public class ApiController {
         break;
       }
     }
-  
+   
     
     // 设置DataSource
     jsonObject.put("driverClassName", (String) dbinfo.get("driver_class_name"));
@@ -285,6 +285,7 @@ public class ApiController {
   @GetMapping("/getTableInfoBydb/{id}")
   public ResponseData getTableInfoBydb(@PathVariable("id") int id) {
     ResponseData responseData = this.getConnectInfos();
+    
     List<Map<String, Object>> list = (List<Map<String, Object>>) responseData.getData();
     Map<String, Object> dbinfo = null;
     for (Map<String, Object> map : list) {

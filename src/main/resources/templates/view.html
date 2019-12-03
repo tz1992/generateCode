@@ -1,244 +1,358 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-
-<head>
-	<meta charset="UTF-8" />
-	<title>生成代码</title>
-	<link rel="stylesheet" type="text/css" href="easyui.css" />
-	<script type="text/javascript" src="jquery.min.js"></script>
-	<script type="text/javascript" src="jquery.easyui.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function () {
-			$("#btn").click(function () {
-				$("#choiceWindow").slideDown(300);
-			});
-
-			$("#x").click(function () {
-				$("#choiceWindow").slideUp(300);
-
-			});
-
-
-
-		});
-
-		function testConnection() {
-
-			var formSerial = {};
-			$($("#sqlForm").serializeArray()).each(function () {
-				formSerial[this.name] = this.value;
-			});
-
-			var fromValue = JSON.stringify(formSerial);
-			$.ajax({
-				url: "/testSqlConnect",
-				type: "post",
-				data: fromValue,
-				contentType: "application/json;charset=UTF-8",
-				dataType: "json",
-				success: function (res) {
-					if (res.code == "200") {
-						alert("连接数据库成功");
-					} else {
-						alert("连接数据库失败");
-					}
-				},
-
-			}
-
-
-			)
-		};
-
-		function cancel() {
-			$("#choiceWindow").slideUp(300);
-		};
-
-		function makesure() {
-			var formSerial = {};
-			$($("#sqlForm").serializeArray()).each(function () {
-				formSerial[this.name] = this.value;
-			});
-
-			var fromValue = JSON.stringify(formSerial);
-			$.ajax({
-				url: "/makesure",
-				type: "post",
-				data: fromValue,
-				contentType: "application/json;charset=UTF-8",
-				dataType: "json",
-				success: function (res) {
-					if (res.code == "200") {
-						alert("连接数据库成功");
-					} else {
-						alert("连接数据库失败");
-					}
-				},
-
-			}
-
-
-			)
-		};
-	</script>
-	<style>
-		body {
-			background-image: url('images/2.jpg');
-		}
-
-		#right-body {
-			width: 500px;
-			height: 400px;
-			position: fixed;
-			top: 0px;
-			left: 0px;
-			right: 0px;
-			bottom: 0px;
-			margin: auto;
-		}
-
-
-		#choiceWindow {
-			display: none;
-			position: absolute;
-			top: 25%;
-			left: 25%;
-			width: 30%;
-			height: 55%;
-			padding: 20px;
-			border: 3px solid #ccc;
-			background-color: white;
-			z-index: 2;
-			overflow: auto;
-		}
-
-
-		#x:hover {
-			cursor: pointer;
-			color: rgb(55, 198, 192);
-		}
-	</style>
-
-</head>
-
-<body>
-	<div>
-
-		<div id='right-body'>
-
-			<div align="center">
-				<form method="POST" enctype="multipart/form-data" action="/">
-
-
-					<div align="center">
-						应用名称：<input type="text" id="check" name="AppName" required="true"
-							style="width: 80px;border-color: #95b8e7; border-width: 1px; border-style: solid" />
-					</div>
-					<br />
-					<div align="center">
-						基础包名: <input type="text" name="basepackage" required="true"
-							style="width: 150px;border-color: #95b8e7; border-width: 1px; border-style: solid" />
-
-					</div>
-					<br />
-
-
-					<div align="center">
-						表名称: <select id="ddlLine" name="tableName" style="width: 205px; height: 24px; ">
-						</select>
-					</div>
-					<br />
-
-					<div align="center">
-						文件命名: <select id="ddlLine" name="writeName" style="width: 205px; height: 24px; ">
-						</select>
-					</div>
-					<br />
-
-
-					<br />
-					<div align="center">
-						代码保存路径 ：<input type="file" name="writepath" />
-					</div>
-
-
-
-					<div align="center">
-						<input type="submit" value="上传" name="上传" />
-					</div>
-				</form>
-
-			</div>
-
-		</div>
-
-		<div id='header'>
-			<button id="btn">数据库连接</button>
-			<div id="choiceWindow">
-				<label id="x" style="position: absolute;top:2px;left: 95%;font-size: 25px;">x</label>
-				<form id="sqlForm" method="post" action="/testSqlConnect">
-
-					<div align="center">
-						命名：<input type="text" id="check" name="calledName" required="true"
-							style="width: 80px;border-color: #95b8e7; border-width: 1px; border-style: solid" />
-					</div>
-					<br />
-
-					<div align="center">
-						数据库类型：<select name="driverClassName">
-							<option value="oracle.jdbc.driver.OracleDriver">oracle数据库</option>
-							<option value="com.mysql.jdbc.Driver">mysql数据库</option>
-							<option value="com.microsoft.sqlserver.jdbc.SQLServerDriver">sqlserver数据库</option>
-						</select>
-					</div>
-
-
-					<div align="center">
-						IP地址: <input type="text" name="host" required="true"
-							style="width: 150px;border-color: #95b8e7; border-width: 1px; border-style: solid" />
-
-					</div>
-					<br />
-
-					<div align="center">
-						端口号: <input name="port" style="width: 205px; height: 24px; " />
-
-					</div>
-
-					<div align="center">
-						用户名: <input type="text" name="username" style="width: 205px; height: 24px; " />
-
-					</div>
-
-
-					<div align="center">
-						密码: <input type="password" name="password" style="width: 205px; height: 24px; " />
-
-					</div>
-
-					<div align="center">
-						数据库: <input name="dbName" style="width: 205px; height: 24px; " />
-
-					</div>
-
-
-					<div id="button-group">
-
-						<input type="button" value="测试连接" onclick="testConnection()" />
-						<input type="button" value="取消" onclick="cancel()" />
-						<input type="button" value="确定" onclick="makesure()" />
-					</div>
-
-
-
-
-				</form>
-			</div>
-
-		</div>
-
-	</div>
-
-</body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <title>生成代码</title>
+    <link rel="stylesheet" type="text/css" href="easyui.css" />
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.easyui.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#btn").click(function() {
+          $("#choiceWindow").slideDown(300);
+        });
+
+        $("#x").click(function() {
+          $("#choiceWindow").slideUp(300);
+        });
+
+        getDataBaseList();
+
+        $("#database").change(function() {
+          var value = $(this)
+            .children("option:selected")
+            .val();
+          $.ajax({
+            url: `/getTableInfoBydb/${value}`,
+            type: "get",
+            dataType: "json",
+            success: function(res) {
+              if (res.code == "200") {
+                var dataList = res.data;
+                addOptions1(dataList);
+              } else {
+                alert("连接数据库失败");
+              }
+            }
+          });
+        });
+      });
+
+      //  测速数据库连接
+      function testConnection() {
+        var formSerial = {};
+        $($("#sqlForm").serializeArray()).each(function() {
+          formSerial[this.name] = this.value;
+        });
+
+        var fromValue = JSON.stringify(formSerial);
+        $.ajax({
+          url: "/testSqlConnect",
+          type: "post",
+          data: fromValue,
+          contentType: "application/json;charset=UTF-8",
+          dataType: "json",
+          success: function(res) {
+            if (res.code == "200") {
+              alert("连接数据库成功");
+            } else {
+              alert("连接数据库失败");
+            }
+          }
+        });
+      }
+
+      // 获取已经可以连接的数据库
+      function getDataBaseList() {
+        $.ajax({
+          url: "/getConnectInfos",
+          type: "get",
+          dataType: "json",
+          success: function(res) {
+            var dataList = res.data;
+            addOptions(dataList);
+            addTableElement(dataList);
+          }
+        });
+      }
+
+      // 获取已经连接数据库的下拉框
+      function addOptions(project) {
+        var pro = $("#database");
+
+        var options = '<option value ="0">请选择</option>';
+        $(project).each(function() {
+          options +=
+            '<option value="' + this.id + '" >' + this.db_name + "</option>";
+        });
+
+        pro.append(options);
+      }
+
+      // 获取数据库表的下拉框
+      function addOptions1(project) {
+        var pro = $("#tableName");
+
+        var options = '<option value ="0">请选择</option>';
+        $(project).each(function() {
+          options +=
+            '<option value="' +
+            this.TABLE_NAME +
+            '" >' +
+            this.TABLE_NAME +
+            "</option>";
+        });
+
+        pro.append(options);
+      }
+
+      // 增加左侧表单的属性
+      function addTableElement(data) {
+        var pro = $("#dataBaseInfo");
+        var ele = "<tr><td>数据库名称</td><td>操作</td></tr>";
+        $(data).each(function() {
+          ele += "<tr><td>" + this.db_name + "</td><td>删除</td></tr>";
+        });
+        pro.append(ele);
+      }
+
+      // 隐藏窗口
+      function cancel() {
+        $("#choiceWindow").slideUp(300);
+      }
+
+      // 确定数据库连接
+      function makesure() {
+        var formSerial = {};
+        $($("#sqlForm").serializeArray()).each(function() {
+          formSerial[this.name] = this.value;
+        });
+
+        var fromValue = JSON.stringify(formSerial);
+        $.ajax({
+          url: "/makesure",
+          type: "post",
+          data: fromValue,
+          contentType: "application/json;charset=UTF-8",
+          dataType: "json",
+          success: function(res) {
+            if (res.code == "200") {
+              alert("连接数据库成功");
+            } else {
+              alert("连接数据库失败");
+            }
+          }
+        });
+      }
+    </script>
+    <style>
+      #total {
+        width: 1000px;
+        margin-left: 400px;
+        margin-top: 200px;
+      }
+
+      #header {
+        height: 50px;
+        background-color: #ccc;
+      }
+
+      #body {
+        width: 1000px;
+        height: 400px;
+        margin-top: 30px;
+      }
+
+      #right-body {
+        width: 800px;
+        height: 400px;
+        margin-left: 200px;
+        background-color: #ccc;
+      }
+
+      #sider {
+        width: 150px;
+        height: 400px;
+        margin-top: -400px;
+        background-color: #ccc;
+      }
+
+      #choiceWindow {
+        display: none;
+        position: absolute;
+        top: 25%;
+        left: 25%;
+        width: 30%;
+        height: 55%;
+        padding: 20px;
+        border: 3px solid #ccc;
+        background-color: white;
+        z-index: 2;
+        overflow: auto;
+      }
+
+      #x:hover {
+        cursor: pointer;
+        color: rgb(55, 198, 192);
+      }
+
+      #btn {
+        margin-top: 14px;
+        margin-left: 20px;
+      }
+
+      #form {
+        margin-top: 50px;
+      }
+
+      #dataBaseInfo {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="total">
+      <div id="header">
+        <button id="btn">数据库连接</button>
+        <div id="choiceWindow">
+          <label
+            id="x"
+            style="position: absolute;top:2px;left: 95%;font-size: 25px;"
+            >x</label
+          >
+          <form id="sqlForm" method="post" action="/testSqlConnect">
+            <div align="center">
+              命名：<input
+                type="text"
+                id="check"
+                name="calledName"
+                required="true"
+                style="width: 80px;border-color: #95b8e7; border-width: 1px; border-style: solid"
+              />
+            </div>
+            <br />
+
+            <div align="center">
+              数据库类型：<select name="driverClassName">
+                <option value="oracle.jdbc.driver.OracleDriver"
+                  >oracle数据库</option
+                >
+                <option value="com.mysql.jdbc.Driver">mysql数据库</option>
+                <option value="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                  >sqlserver数据库</option
+                >
+              </select>
+            </div>
+
+            <div align="center">
+              IP地址:
+              <input
+                type="text"
+                name="host"
+                required="true"
+                style="width: 150px;border-color: #95b8e7; border-width: 1px; border-style: solid"
+              />
+            </div>
+            <br />
+
+            <div align="center">
+              端口号: <input name="port" style="width: 205px; height: 24px; " />
+            </div>
+
+            <div align="center">
+              用户名:
+              <input
+                type="text"
+                name="username"
+                style="width: 205px; height: 24px; "
+              />
+            </div>
+
+            <div align="center">
+              密码:
+              <input
+                type="password"
+                name="password"
+                style="width: 205px; height: 24px; "
+              />
+            </div>
+
+            <div align="center">
+              数据库:
+              <input name="dbName" style="width: 205px; height: 24px; " />
+            </div>
+
+            <div id="button-group">
+              <input
+                type="button"
+                value="测试连接"
+                onclick="testConnection()"
+              />
+              <input type="button" value="取消" onclick="cancel()" />
+              <input type="button" value="确定" onclick="makesure()" />
+            </div>
+          </form>
+        </div>
+      </div>
+      <div id="body">
+        <div id="right-body">
+          <div align="center">
+            自动生成代码
+          </div>
+          <div id="form" align="center">
+            <form
+              method="POST"
+              enctype="application/json"
+              action="/generateCode"
+            >
+              <div align="center">
+                应用名称：<input
+                  type="text"
+                  id="check"
+                  name="AppName"
+                  required="true"
+                />
+              </div>
+
+              <div align="center">
+                基础包名:
+                <input type="text" name="basepackage" required="true" />
+              </div>
+
+              <div align="center">
+                数据库:
+                <select id="database" name="database"> </select>
+              </div>
+
+              <div align="center">
+                表名称:
+                <select id="tableName" name="tableName"> </select>
+              </div>
+
+              <div align="center">
+                文件命名:
+                <input />
+              </div>
+
+              <div align="center">
+                代码保存路径 ：<input type="text" name="writepath" />
+              </div>
+
+              <div align="center">
+                <input type="submit" value="生成代码" name="生成代码" />
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div id="sider">
+          <div align="center">
+            数据库配置
+          </div>
+          <table id="dataBaseInfo"></table>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

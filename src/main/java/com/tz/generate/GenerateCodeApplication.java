@@ -10,5 +10,4 @@ public class GenerateCodeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GenerateCodeApplication.class, args);
 	}
-    
 }
