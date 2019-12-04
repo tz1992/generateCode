@@ -9,15 +9,12 @@ import com.tz.generate.tag.BaseAction;
 import com.tz.generate.util.BeanNameUtil;
 
 public class Generate {
-
-
   AnnotationConfigApplicationContext ctx;
 
   protected Generate() {
     this.ctx = new AnnotationConfigApplicationContext(
         new Class[] {com.tz.generate.config.GeneratorConfig.class});
   }
-
 
   public static String doGenerat(String jsonParam) {
     Generate generator = new Generate();
@@ -35,7 +32,7 @@ public class Generate {
     
     String version = jsonobject.getString("version");
     if (StringUtils.isEmpty(version)) {
-      version = "1.0";
+      version = "ms";
     }
 
     String action = jsonobject.getString("action");
