@@ -17,7 +17,7 @@ import com.tz.generate.util.Utils;
 
 import freemarker.template.Template;
 
-@Action(action = "dao", version = "1.0")
+@Action(action = "dao", version = "spring")
 public class DaoAction extends BaseAction<Dao> {
   protected void before(JSONObject jsonobject) {}
 

@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 
-@Action(action = "project", version = "1.0")
+@Action(action = "project", version = "spring")
 public class ProjectAction extends ConfigAction {
   @Autowired
   public DruidDataSource dataSource;

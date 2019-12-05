@@ -11,7 +11,7 @@ import com.tz.generate.util.TemplateUtil;
 
 import freemarker.template.Template;
 
-@Action(action = "properties", version = "1.0")
+@Action(action = "properties", version = "spring")
 public class PropertiesAction extends BaseAction<Project> {
   protected void before(JSONObject jsonobject) {}
 

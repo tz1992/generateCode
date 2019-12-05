@@ -27,6 +27,7 @@ public class TemplateUtil {
         String dirPath = "/template/" + "/" + version.replaceAll("\\.", "_");
         config.setClassForTemplateLoading(TemplateUtil.class.getClass(), dirPath);
         template = config.getTemplate("/" + templateName + ".ftl");
+        
       } catch (IOException e) {
         throw new RuntimeException(
             "can't get [" + templateName + "] freemarker template by " + refTemplate);

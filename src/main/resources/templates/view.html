@@ -18,7 +18,7 @@
 
         getDataBaseList();
 
-        $("#database").change(function() {
+        $("#db").change(function() {
           var value = $(this)
             .children("option:selected")
             .val();
@@ -62,6 +62,30 @@
         });
       }
 
+      // 生成代码
+      function generatecode() {
+        var formSerial = {};
+        $($("#generatecode").serializeArray()).each(function() {
+          formSerial[this.name] = this.value;
+        });
+
+        var fromValue = JSON.stringify(formSerial);
+        $.ajax({
+          url: "/generateCode",
+          type: "post",
+          data: fromValue,
+          contentType: "application/json;charset=UTF-8",
+          dataType: "json",
+          success: function(res) {
+            if (res.code == "200") {
+              alert("生成代码成功");
+            } else {
+              alert("生成代码失败");
+            }
+          }
+        });
+      }
+
       // 获取已经可以连接的数据库
       function getDataBaseList() {
         $.ajax({
@@ -78,7 +102,7 @@
 
       // 获取已经连接数据库的下拉框
       function addOptions(project) {
-        var pro = $("#database");
+        var pro = $("#db");
 
         var options = '<option value ="0">请选择</option>';
         $(project).each(function() {
@@ -303,28 +327,31 @@
             自动生成代码
           </div>
           <div id="form" align="center">
-            <form
-              method="POST"
-              enctype="application/json"
-              action="/generateCode"
-            >
+            <form method="post" id="generatecode">
               <div align="center">
                 应用名称：<input
                   type="text"
-                  id="check"
-                  name="AppName"
+                  id="appName"
+                  name="appName"
                   required="true"
                 />
               </div>
 
               <div align="center">
                 基础包名:
-                <input type="text" name="basepackage" required="true" />
+                <input type="text" name="basePackage" required="true" />
+              </div>
+              <div align="center">
+                版本:
+                <select id="version" name="version">
+                  <option value="ms">ms</option>
+                  <option value="spring">spring</option>
+                </select>
               </div>
 
               <div align="center">
                 数据库:
-                <select id="database" name="database"> </select>
+                <select id="db" name="db"> </select>
               </div>
 
               <div align="center">
@@ -334,17 +361,18 @@
 
               <div align="center">
                 文件命名:
-                <input />
+                <input id="writeName" name="writeName" />
               </div>
 
               <div align="center">
-                代码保存路径 ：<input type="text" name="writepath" />
-              </div>
-
-              <div align="center">
-                <input type="submit" value="生成代码" name="生成代码" />
+                代码保存路径 ：<input type="text" name="writePath" />
               </div>
             </form>
+          </div>
+          <div align="center">
+            <button onclick="generatecode()">
+              生成代码
+            </button>
           </div>
         </div>
 

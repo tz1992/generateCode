@@ -16,7 +16,7 @@ import org.springframework.util.StringUtils;
 
 
 
-@Action(action = "config", version = "1.0")
+@Action(action = "config", version = "spring")
 public class ConfigAction extends BaseAction<Project> {
   private static DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 

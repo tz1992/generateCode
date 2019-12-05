@@ -16,7 +16,7 @@ import com.tz.generate.util.Utils;
 
 import freemarker.template.Template;
 
-@Action(action = "resource",  version = "1.0")
+@Action(action = "resource",  version = "spring")
 public class ResourceAction extends BaseAction<Resource> {
 
   @Override

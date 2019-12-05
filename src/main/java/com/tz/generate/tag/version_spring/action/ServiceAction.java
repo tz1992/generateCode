@@ -16,7 +16,7 @@ import com.tz.generate.util.Utils;
 
 import freemarker.template.Template;
 
-@Action(action = "service",  version = "1.0")
+@Action(action = "service",  version = "spring")
 public class ServiceAction extends BaseAction<Service> {
   protected void before(JSONObject jsonobject) {}
 

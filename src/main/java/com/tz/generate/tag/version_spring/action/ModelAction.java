@@ -22,7 +22,7 @@ import com.tz.generate.tag.Model;
 import com.tz.generate.tag.version_spring.model.Project;
 import com.tz.generate.util.Utils;
 
-@Action(action = "model", version = "1.0")
+@Action(action = "model", version = "spring")
 public class ModelAction extends BaseAction<Model> {
   @Autowired
   public DruidDataSource dataSource;

@@ -14,7 +14,7 @@ import java.util.Map;
 
 
 
-@Action(action = "maven", version = "1.0")
+@Action(action = "maven", version = "spring")
 public class MavenAction extends BaseAction<Maven> {
   protected void before(JSONObject jsonobject) {}
 

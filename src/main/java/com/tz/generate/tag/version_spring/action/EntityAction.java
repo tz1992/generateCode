@@ -29,7 +29,7 @@ import org.springframework.util.StringUtils;
 
 
 
-@Action(action = "entity",  version = "1.0")
+@Action(action = "entity",  version = "spring")
 public class EntityAction
   extends BaseAction<Entity>
 {
