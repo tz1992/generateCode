@@ -57,12 +57,18 @@ public class DaoAction extends BaseAction<Dao> {
 
     for (Column column : model.getColumn()) {
       column.setPropertyName(Utils.getParamName(column.getColumnName()));
+      
     }
-
+    
     Map<String, Object> param = new HashMap<String, Object>();
     param.putAll(global());
     param.put("model", model);
 //    param.put("dao", dao);
+    
+    
+    
+    
+    
 
     TemplateUtil.fprint(template, filePath, param);
   }

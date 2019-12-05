@@ -316,7 +316,6 @@ public class ApiController {
 
           break;
         case "com.microsoft.sqlserver.jdbc.SQLServerDriver":
-
           sql = "SELECT Name as table_name FROM SysObjects Where XType='U'";
 
           break;

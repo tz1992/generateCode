@@ -133,9 +133,20 @@
       // 增加左侧表单的属性
       function addTableElement(data) {
         var pro = $("#dataBaseInfo");
-        var ele = "<tr><td>数据库名称</td><td>操作</td></tr>";
+        var ele = `<tr><td>数据库名称</td><td>操作</td></tr>`;
         $(data).each(function() {
-          ele += "<tr><td>" + this.db_name + "</td><td>删除</td></tr>";
+          var id = `${this.id}`;
+          console.log(id);
+          ele +=
+            `<tr><td>` +
+            this.called_name +
+            `</td><td>` +
+            `<button onclick="deletesql(\' ` +
+            this.id +
+            ` \');"  >` +
+            `删除` +
+            `</button>` +
+            `</td></tr>`;
         });
         pro.append(ele);
       }
@@ -168,6 +179,22 @@
           }
         });
       }
+
+      function deletesql(id) {
+        $.ajax({
+          url: `/deleteSqlBeans/${id}`,
+          type: "delete",
+          contentType: "application/json;charset=UTF-8",
+          dataType: "json",
+          success: function(res) {
+            if (res.code == "200") {
+              alert("删除数据库成功");
+            } else {
+              alert("删除数据库失败");
+            }
+          }
+        });
+      }
     </script>
     <style>
       #total {
@@ -188,19 +215,27 @@
       }
 
       #right-body {
-        width: 800px;
+        float: left;
+        width: calc(100% - 170px);
         height: 400px;
-        margin-left: 200px;
+        margin-left: 20px;
         padding-top: 30px;
         background-color: #ccc;
       }
 
+      #zdsc {
+        align-self: auto;
+      }
+
       #sider {
         width: 150px;
-        height: 400px;
-        margin-top: -430px;
+        height: 430px;
         background-color: #ccc;
-        padding-top: 30px;
+        float: left;
+      }
+
+      #dataBaseInfo {
+        padding-top: 20px;
       }
 
       #choiceWindow {
@@ -229,10 +264,25 @@
 
       #form {
         margin-top: 50px;
+        padding-left: 30%;
+      }
+      #sqlForm {
+        margin-left: 30%;
+        margin-top: 5%;
       }
 
-      #dataBaseInfo {
-        padding-top: 20px;
+      #buttonsc {
+        margin-left: 40%;
+        margin-top: 20px;
+      }
+
+      input {
+        background-color: white;
+        width: 150px;
+      }
+
+      select {
+        width: 150px;
       }
     </style>
   </head>
@@ -248,7 +298,7 @@
             >x</label
           >
           <form id="sqlForm" method="post" action="/testSqlConnect">
-            <div align="center">
+            <div>
               命名：<input
                 type="text"
                 id="check"
@@ -259,7 +309,7 @@
             </div>
             <br />
 
-            <div align="center">
+            <div>
               数据库类型：<select name="driverClassName">
                 <option value="oracle.jdbc.driver.OracleDriver"
                   >oracle数据库</option
@@ -271,7 +321,7 @@
               </select>
             </div>
 
-            <div align="center">
+            <div>
               IP地址:
               <input
                 type="text"
@@ -282,11 +332,11 @@
             </div>
             <br />
 
-            <div align="center">
+            <div>
               端口号: <input name="port" style="width: 205px; height: 24px; " />
             </div>
 
-            <div align="center">
+            <div>
               用户名:
               <input
                 type="text"
@@ -295,7 +345,7 @@
               />
             </div>
 
-            <div align="center">
+            <div>
               密码:
               <input
                 type="password"
@@ -304,7 +354,7 @@
               />
             </div>
 
-            <div align="center">
+            <div>
               数据库:
               <input name="dbName" style="width: 205px; height: 24px; " />
             </div>
@@ -322,13 +372,16 @@
         </div>
       </div>
       <div id="body">
+        <div id="sider">
+          <table id="dataBaseInfo"></table>
+        </div>
         <div id="right-body">
-          <div align="center">
+          <div id="zdsc" align="center">
             自动生成代码
           </div>
-          <div id="form" align="center">
+          <div id="form">
             <form method="post" id="generatecode">
-              <div align="center">
+              <div>
                 应用名称：<input
                   type="text"
                   id="appName"
@@ -337,11 +390,11 @@
                 />
               </div>
 
-              <div align="center">
+              <div>
                 基础包名:
                 <input type="text" name="basePackage" required="true" />
               </div>
-              <div align="center">
+              <div>
                 版本:
                 <select id="version" name="version">
                   <option value="ms">ms</option>
@@ -349,35 +402,29 @@
                 </select>
               </div>
 
-              <div align="center">
+              <div>
                 数据库:
                 <select id="db" name="db"> </select>
               </div>
 
-              <div align="center">
+              <div>
                 表名称:
                 <select id="tableName" name="tableName"> </select>
               </div>
 
-              <div align="center">
+              <div>
                 文件命名:
                 <input id="writeName" name="writeName" />
               </div>
 
-              <div align="center">
-                代码保存路径 ：<input type="text" name="writePath" />
-              </div>
+              <div>代码保存路径 ：<input type="text" name="writePath" /></div>
             </form>
           </div>
-          <div align="center">
+          <div id="buttonsc">
             <button onclick="generatecode()">
               生成代码
             </button>
           </div>
-        </div>
-
-        <div id="sider">
-          <table id="dataBaseInfo"></table>
         </div>
       </div>
     </div>
