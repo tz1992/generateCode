@@ -313,10 +313,9 @@ public class ApiController {
           sql = "select table_name from information_schema.tables where table_schema='"
               + dbinfo.get("db_name") + "' and table_type='base table';";
 
-
           break;
         case "com.microsoft.sqlserver.jdbc.SQLServerDriver":
-          sql = "SELECT Name as table_name FROM SysObjects Where XType='U'";
+          sql = "SELECT Name as TABLE_NAME FROM SysObjects Where XType='U'";
 
           break;
 
@@ -335,12 +334,13 @@ public class ApiController {
         lists.add(rowData);
 
       }
-
+      
       responseData.setData(lists);
     } catch (Exception e) {
       e.printStackTrace();
       responseData.setCode(500);
       responseData.setMsg("获取表数据失败");
+      return responseData;
     }finally {
       try {
         connection.close();

@@ -107,7 +107,11 @@
         var options = '<option value ="0">请选择</option>';
         $(project).each(function() {
           options +=
-            '<option value="' + this.id + '" >' + this.called_name + "</option>";
+            '<option value="' +
+            this.id +
+            '" >' +
+            this.called_name +
+            "</option>";
         });
 
         pro.append(options);
@@ -116,7 +120,8 @@
       // 获取数据库表的下拉框
       function addOptions1(project) {
         var pro = $("#tableName");
-
+        // 先将之前的子元素清楚
+        pro.empty();
         var options = '<option value ="0">请选择</option>';
         $(project).each(function() {
           options +=
