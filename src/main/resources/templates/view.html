@@ -230,6 +230,7 @@
 
       #zdsc {
         align-self: auto;
+        margin-left: -100px;
       }
 
       #sider {
@@ -247,9 +248,9 @@
         display: none;
         position: absolute;
         top: 25%;
-        left: 25%;
+        left: 30%;
         width: 30%;
-        height: 55%;
+        height: 40%;
         padding: 20px;
         border: 3px solid #ccc;
         background-color: white;
@@ -270,10 +271,12 @@
       #form {
         margin-top: 50px;
         padding-left: 30%;
+        display: inline-block;
+        vertical-align: bottom;
       }
       #sqlForm {
         margin-left: 30%;
-        margin-top: 5%;
+        margin-top: 10%;
       }
 
       #buttonsc {
@@ -288,6 +291,7 @@
 
       select {
         width: 150px;
+        height: 25;
       }
     </style>
   </head>
@@ -302,19 +306,17 @@
             style="position: absolute;top:2px;left: 95%;font-size: 25px;"
             >x</label
           >
+          <label
+            id="xx"
+            style="position: absolute;top:10px;left: 40%;font-size: 20px;"
+            >数据库连接</label
+          >
           <form id="sqlForm" method="post" action="/testSqlConnect">
-            <div>
-              命名：<input
-                type="text"
-                id="check"
-                name="calledName"
-                required="true"
-                style="width: 80px;border-color: #95b8e7; border-width: 1px; border-style: solid"
-              />
+            <div style="margin-top: 10px;">
+              命名：<input type="text" name="calledName" required="true" />
             </div>
-            <br />
 
-            <div>
+            <div style="margin-top: 10px;">
               数据库类型：<select name="driverClassName">
                 <option value="oracle.jdbc.driver.OracleDriver"
                   >oracle数据库</option
@@ -326,52 +328,34 @@
               </select>
             </div>
 
-            <div>
+            <div style="margin-top: 10px;">
               IP地址:
-              <input
-                type="text"
-                name="host"
-                required="true"
-                style="width: 150px;border-color: #95b8e7; border-width: 1px; border-style: solid"
-              />
-            </div>
-            <br />
-
-            <div>
-              端口号: <input name="port" style="width: 205px; height: 24px; " />
+              <input type="text" name="host" required="true" />
             </div>
 
-            <div>
+            <div style="margin-top: 10px;">端口号: <input name="port" /></div>
+
+            <div style="margin-top: 10px;">
               用户名:
-              <input
-                type="text"
-                name="username"
-                style="width: 205px; height: 24px; "
-              />
+              <input type="text" name="username" />
             </div>
 
-            <div>
+            <div style="margin-top: 10px;">
               密码:
-              <input
-                type="password"
-                name="password"
-                style="width: 205px; height: 24px; "
-              />
+              <input type="password" name="password" />
             </div>
 
-            <div>
+            <div style="margin-top: 10px;">
               数据库:
-              <input name="dbName" style="width: 205px; height: 24px; " />
+              <input name="dbName" />
             </div>
 
-            <div id="button-group">
-              <input
-                type="button"
-                value="测试连接"
-                onclick="testConnection()"
-              />
-              <input type="button" value="取消" onclick="cancel()" />
-              <input type="button" value="确定" onclick="makesure()" />
+            <div id="button-group" style="margin-top: 10px;">
+              <button onclick="testConnection()">
+                测试连接
+              </button>
+              <button onclick="cancel()">取消</button>
+              <button onclick="makesure()">确定</button>
             </div>
           </form>
         </div>
