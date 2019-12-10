@@ -2,7 +2,7 @@
 package ${project.basepackage}.service;
 
 import org.springframework.transaction.annotation.Transactional;
-import ${project.basepackage}.entity.${model.name};
+
 
 /**
  * ${model.name}Service.

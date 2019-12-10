@@ -4,7 +4,7 @@ package ${project.basepackage}.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ${project.basepackage}.dao.${model.name}Dao;
-
+import ${project.basepackage}.service.${model.name}Service;
 
 
 /**

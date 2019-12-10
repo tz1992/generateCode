@@ -40,8 +40,7 @@ public class ProjectAction extends ConfigAction {
     checkPath(javaPath + "/ui", false);
 
     checkPath(resourcesPath, false);
-//    checkPath(testJavaPath, false);
-//    checkPath(testResourcesPath, false);
+
   }
 
 
@@ -74,16 +73,6 @@ public class ProjectAction extends ConfigAction {
 
     BaseAction action = getBean("maven");
     if (action != null) action.write(maven);
-  }
-
-  protected void goDocker(JSONObject json) {
-    if (json.getBooleanValue("nodocker")) {
-      return;
-    }
-    JSONObject docker = (JSONObject) json.get("docker");
-
-    BaseAction action = getBean("docker");
-    if (action != null) action.write(docker);
   }
 
 

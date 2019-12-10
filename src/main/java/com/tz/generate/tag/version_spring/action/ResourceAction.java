@@ -48,7 +48,7 @@ public class ResourceAction extends BaseAction<Resource> {
     Template template = getTemplate((resource == null) ? null : resource.getTemplate(), "Resource");
     
     String javaPath = project.getWritepath() +"/"+project.getAppName()+ "/src/main/java/" + project.getBasepackage().replaceAll("\\.", "/");
-    String filePath = javaPath + "/ui/" + model.getName() + "Resource.java";
+    String filePath = javaPath + "/ui/" + model.getName() + "Controller.java";
     
     Map<String, Object> param = new HashMap<String, Object>();
     param.putAll(global());

@@ -1,6 +1,8 @@
 
 package ${project.basepackage}.entity;
 
+import java.io.Serializable;
+
 <#if imports??>
  <#list imports as imp>
 import ${imp};

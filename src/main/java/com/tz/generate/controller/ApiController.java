@@ -25,6 +25,7 @@ import com.tz.generate.Generate;
 import com.tz.generate.entity.ResponseData;
 import com.tz.generate.entity.SqlEntity;
 import com.tz.generate.util.SqliteConnection;
+import com.tz.generate.util.Utils;
 
 @RestController
 public class ApiController {
@@ -76,7 +77,7 @@ public class ApiController {
     String writeName = (String) json.get("writeName");
     HashMap<String, String> tables = new HashMap<>();
     tables.put("table", tableName);
-    tables.put("name", writeName);
+    tables.put("name", Utils.upperCase(writeName));
     models.add(tables);
     jsonObject.put("model", models);
 

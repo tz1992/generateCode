@@ -76,7 +76,7 @@ public class EntityAction
     param.putAll(global());
     param.put("model", model);
     param.put("imports", imports);
-//    param.put("columns", filteredColumn);
+    param.put("columns", filteredColumn);
     
     String javaPath = project.getWritepath() +"/"+project.getAppName()+ "/src/main/java/" + project.getBasepackage().replaceAll("\\.", "/");
     

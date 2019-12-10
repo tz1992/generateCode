@@ -77,11 +77,7 @@
           contentType: "application/json;charset=UTF-8",
           dataType: "json",
           success: function(res) {
-            if (res.code == "200") {
-              alert("生成代码成功");
-            } else {
-              alert("生成代码失败");
-            }
+            console.log(res);
           }
         });
       }

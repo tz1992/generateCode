@@ -53,5 +53,10 @@ public class Utils {
     if (paramName == null) return "";
     return paramName.substring(0, 0).toUpperCase() + paramName.substring(1);
   }
+  
+  // 首字母大写
+  public static String upperCase(String str) {
+    return str.substring(0, 1).toUpperCase() + str.substring(1);
+}
 }
 
