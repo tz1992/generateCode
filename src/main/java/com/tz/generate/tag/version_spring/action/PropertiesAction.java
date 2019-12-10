@@ -36,7 +36,7 @@ public class PropertiesAction extends BaseAction<Project> {
 
     String javaPath = project.getWritepath() +"/"+project.getAppName()+ "/src/main/java/"
         + project.getBasepackage().replaceAll("\\.", "/");
-    filePath = javaPath + "/TestApplication.java";
+    filePath = javaPath + "/"+project.getAppName()+"Application.java";
     TemplateUtil.fprint(application, filePath, param);
   }
 

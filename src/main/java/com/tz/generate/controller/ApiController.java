@@ -41,7 +41,7 @@ public class ApiController {
    * @return
    */
   @PostMapping("/generateCode")
-  public String generateCode(@RequestBody Map<String, Object> json) {
+  public Map<String, String> generateCode(@RequestBody Map<String, Object> json) {
     JSONObject jsonObject = new JSONObject();
     jsonObject.put("appName", json.get("appName"));
     jsonObject.put("action", "project");
@@ -81,13 +81,17 @@ public class ApiController {
     models.add(tables);
     jsonObject.put("model", models);
 
-
+    Map<String, String> result=new HashMap<>();
     try {
+      result.put("code", "200");
+      result.put("msg", "代码在"+json.get("writePath")+"生成成功");
       Generate.doGenerat(jsonObject.toString());
-      return "代码在" + json.get("writePath") + "成功生成";
+      return result;
     } catch (Exception e) {
       e.printStackTrace();
-      return "代码生成失败";
+      result.put("code", "500");
+      result.put("msg", "代码生成失败");
+      return result;
     }
 
 
